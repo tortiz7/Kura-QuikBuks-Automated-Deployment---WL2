@@ -19,5 +19,12 @@ pipeline {
                 '''
             }
         }
-    }
-}
+        stage ('Deploy') {
+          steps {
+              sh '''#!/bin/bash
+              source venv/bin/activate
+              eb create [Kura_QuikBuks_Auto_main] --single
+              '''
+          }
+      }
+  }
