@@ -6,7 +6,7 @@ cpu_threshold=75.0
 
 # Check Memory usage
 mem_usage=$(free | grep Mem | awk '{print $3/$2 * 100.0}')
-mem_threshold=80.0
+mem_threshold=90.0
 
 # Check Disk usage
 disk_usage=$(df -h / | grep / | awk '{print $5}' | sed 's/%//g')
