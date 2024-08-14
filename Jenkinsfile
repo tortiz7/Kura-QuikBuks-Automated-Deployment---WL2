@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                 source venv/bin/activate
-                eb create Kura_QuikBuks_Auto_main --single
+                eb create Kura-QuikBuks-Auto-main --single
                 '''
             }
         }
