@@ -49,7 +49,8 @@ The goal of this project was to deploy _Kura QuikBuks Auto_, a Retail Banking ap
 - **How**: One AWS CLI command is eb init, which allowed me to deploy Kura QuikBuks Automated via the commandline, configure the environment parameters, and then automate the development via my Jenkinsfile. 
 
 ## SYSTEM DESIGN DIAGRAM
-[Link to the system design diagram for the Retail Banking app]
+
+![Kura QuikBuks Auto System Diagram](https://github.com/user-attachments/assets/46575f24-8112-4a54-bb95-f34857f8f97d)
 
 ## ISSUES/TROUBLESHOOTING
 
