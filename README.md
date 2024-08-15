@@ -107,18 +107,33 @@ Deploying the Retail Banking application using AWS CLI and Jenkins demonstrated 
 ## Documentation
 
 **Jenkins server resource test Log**
-![image](https://github.com/user-attachments/assets/859b0b35-dc26-4665-89f1-556c4bf606f1)
+
+![image](https://github.com/user-attachments/assets/a4a9b45d-b20c-4111-b601-2228b7d061a5)
+
 **Jenkins successful scan log**
-![image](https://github.com/user-attachments/assets/3dfc9b40-de89-49a3-a390-8eeb169b3b23)
+
+![image](https://github.com/user-attachments/assets/3430581c-101d-4c6f-9b0c-5a0d42835e12)
+
 **Jenkins Deployment Log**
-![image](https://github.com/user-attachments/assets/e222b9e9-c5b3-453b-b31e-1b0ae022c980)
+
+![image](https://github.com/user-attachments/assets/32518b73-c527-443f-b65c-9f217c7d15cc)
+
 **Jenkins Stage View**
-![image](https://github.com/user-attachments/assets/1376d27b-9e67-4d51-8612-dd38aa5e2fc1)
+
+![image](https://github.com/user-attachments/assets/92646f9f-ae1a-492a-95fd-158c5be08fa1)
+
 **Jenkins Pipeline Graph**
-![image](https://github.com/user-attachments/assets/7b467853-e6db-4c41-b7d3-367e60aff27e)
-**Jenkins Commit Histroy**
-![image](https://github.com/user-attachments/assets/25be38af-7346-4240-b802-123cf6f3af44)
+
+![image](https://github.com/user-attachments/assets/b9b50e41-34f3-4280-99ba-0b13605bdb8b)
+
+**Jenkins change log**
+
+![image](https://github.com/user-attachments/assets/bd49c8e0-b9aa-466b-b7b7-2454587575ee)
+
 **Elastic Beanstalk Event logs**
+
 ![image](https://github.com/user-attachments/assets/179ab14c-5e13-438d-8875-01a0312975eb)
+
 **Kura QuikBuks Auto welcome page**
+
 ![image](https://github.com/user-attachments/assets/84a516bc-0493-4482-8d61-6531ff8b90f4)
