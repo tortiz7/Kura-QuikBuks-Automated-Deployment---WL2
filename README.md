@@ -75,11 +75,6 @@ The goal of this project was to deploy _Kura QuikBuks Auto_, a Retail Banking ap
   - Killed the process `fwupd`, which is responsible for updating server firmware, as it was consuming the second most memory (13%) on the Jenkins server, after Jenkins itself.
   - Increased the memory threshold to 90% to prevent future build failures due to resource limits.
 
-## Documentation
-![image](https://github.com/user-attachments/assets/859b0b35-dc26-4665-89f1-556c4bf606f1)
-
-*links to Jenkins screenshot and Retail Application Deployment screenshot go here*
-
 ## OPTIMIZATION
 
 ### Efficiency of Using a Deploy Stage in CI/CD Pipeline
@@ -108,3 +103,22 @@ The goal of this project was to deploy _Kura QuikBuks Auto_, a Retail Banking ap
 
 ## CONCLUSION
 Deploying the Retail Banking application using AWS CLI and Jenkins demonstrated the power of automation in modern development workflows. The integration of Jenkins for CI/CD and AWS services for deployment streamlined the process, improved efficiency, and reduced the risk of human error. Despite encountering challenges with configuration, system resources, and authorization management, the project provided valuable insights into cloud-based deployments and automation. Future optimizations will focus on refining deployment strategies and addressing any emerging issues to maintain a robust CI/CD pipeline.
+
+## Documentation
+
+**Jenkins server resource test Log**
+![image](https://github.com/user-attachments/assets/859b0b35-dc26-4665-89f1-556c4bf606f1)
+**Jenkins successful scan log**
+![image](https://github.com/user-attachments/assets/3dfc9b40-de89-49a3-a390-8eeb169b3b23)
+**Jenkins Deployment Log**
+![image](https://github.com/user-attachments/assets/e222b9e9-c5b3-453b-b31e-1b0ae022c980)
+**Jenkins Stage View**
+![image](https://github.com/user-attachments/assets/1376d27b-9e67-4d51-8612-dd38aa5e2fc1)
+**Jenkins Pipeline Graph**
+![image](https://github.com/user-attachments/assets/7b467853-e6db-4c41-b7d3-367e60aff27e)
+**Jenkins Commit Histroy**
+![image](https://github.com/user-attachments/assets/25be38af-7346-4240-b802-123cf6f3af44)
+**Elastic Beanstalk Event logs**
+![image](https://github.com/user-attachments/assets/179ab14c-5e13-438d-8875-01a0312975eb)
+**Kura QuikBuks Auto welcome page**
+![image](https://github.com/user-attachments/assets/84a516bc-0493-4482-8d61-6531ff8b90f4)
