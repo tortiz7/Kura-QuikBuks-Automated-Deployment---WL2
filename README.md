@@ -76,6 +76,8 @@ The goal of this project was to deploy _Kura QuikBuks Auto_, a Retail Banking ap
   - Increased the memory threshold to 90% to prevent future build failures due to resource limits.
 
 ## Documentation
+![image](https://github.com/user-attachments/assets/859b0b35-dc26-4665-89f1-556c4bf606f1)
+
 *links to Jenkins screenshot and Retail Application Deployment screenshot go here*
 
 ## OPTIMIZATION
