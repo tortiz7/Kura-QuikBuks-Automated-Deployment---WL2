@@ -50,7 +50,7 @@ The goal of this project was to deploy _Kura QuikBuks Auto_, a Retail Banking ap
 
 ## SYSTEM DESIGN DIAGRAM
 
-![Kura QuikBuks Auto System Diagram](https://github.com/user-attachments/assets/46575f24-8112-4a54-bb95-f34857f8f97d)
+![Kura QuikBuks Auto System Diagram](https://github.com/user-attachments/assets/49fcc505-a956-43e4-b913-a01c4415fadc)
 
 ## ISSUES/TROUBLESHOOTING
 
