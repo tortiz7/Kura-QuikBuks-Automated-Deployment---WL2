@@ -86,7 +86,7 @@ The Access and Secret Access keys are needed for future steps, so safe storage o
 
 ### Jenkins Testing Phase Failures Due to Memory Threshold
 - **Problem**: the jenkins build process failed intermittently due to surpassing memory thresholds on the Jenkins server.
-- 
+  
 - **Solution**:
   - I killed the process `fwupd`, which is responsible for updating server firmware, as it was consuming the second most memory (13%) on the Jenkins server, after Jenkins itself.
   - I increased the memory threshold to 90% to prevent future build failures due to resource limits.
