@@ -15,7 +15,7 @@ The goal of this project was to deploy _**Kura QuikBuks Automated**_, a Retail B
     5. Scroll down to "Access keys" and click on "Create access key"
     6. Select the appropriate "use case", and then click "Next" and then "Create access key"
        
-The Access and Secret Access keys are needed for future steps, so it's paramount they are stored somewhere safely. **Never** share your access keys, as a bad actor can get a hold of them and use the keys to access your server, wreaking havoc, compromising data integrity and potentially stealing sensitive information.
+The Access and Secret Access keys are needed for future steps, so safe storage of them is vital to a successful automated CI/CD pipeline. **Never** share your access keys, as a bad actor can get a hold of them and use the keys to access your server, wreaking havoc, compromising data integrity and potentially stealing sensitive information.
 
 ### Set Up Security Groups
 - **Why**: Security Groups ensure that the necessary ports are open for communication between EC2 instances and other services.
