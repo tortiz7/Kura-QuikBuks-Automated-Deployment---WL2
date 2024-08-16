@@ -1,7 +1,7 @@
 # Retail Banking App Deployment with AWS CLI and Jenkins
 
 ## PURPOSE
-The goal of this project was to deploy _Kura QuikBuks Auto_, a Retail Banking application using AWS services, specifically utilizing AWS CLI to automate the deployment process through Jenkins. The aim was to create a streamlined CI/CD pipeline that automatically builds, tests, and deploys the application, enhancing the efficiency and reliability of the deployment process.
+The goal of this project was to deploy _**Kura QuikBuks Automated**_, a Retail Banking application using AWS services, specifically utilizing AWS CLI to automate the deployment process through Jenkins. The aim was to create a streamlined CI/CD pipeline that automatically builds, tests, and deploys the application, enhancing the efficiency and reliability of the deployment process.
 
 ## STEPS
 
