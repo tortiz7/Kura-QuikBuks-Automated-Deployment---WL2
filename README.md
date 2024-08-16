@@ -14,7 +14,7 @@ The goal of this project was to deploy _**Kura QuikBuks Automated**_, a Retail B
     4. Underneath the "Summary" section, click on the "Security credentials" tab
     5. Scroll down to "Access keys" and click on "Create access key"
     6. Select the appropriate "use case", and then click "Next" and then "Create access key"
-  The Access and Secret Access keys are needed for future steps, so it's paramount they are stored somewhere safely.
+  The Access and Secret Access keys are needed for future steps, so it's paramount they are stored somewhere safely. **Never** share your access keys, as a bad actor can get a hold of them and use the keys to access your server, wreaking havoc, compromising data integrity and potentially stealing sensitive information.
 
 ### Set Up Security Groups
 - **Why**: Security Groups ensure that the necessary ports are open for communication between EC2 instances and other services.
@@ -38,7 +38,7 @@ The goal of this project was to deploy _**Kura QuikBuks Automated**_, a Retail B
 
 ### Install AWS CLI on EC2 Instance
 - **Why**: AWS CLI allows for command-line interaction with AWS services, enabling automated deployment.
-- **How**: I first changed to the jenkins user, then navigated to the Kura QuikBuks Automated workspace, acitvated the virtual environment that Jenkins created during the inital build phase, and then Installed AWS CLI by downloading the installer, extracting it from the zip file, and running the setup script.
+- **How**: I first changed to the jenkins user, then navigated to the Kura QuikBuks Automated workspace, acitvated the virtual environment that Jenkins created during the inital build phase, and then Installed AWS CLI by downloading the installer, extracting it from the zip file, and running the setup script. Activating the virtual environment and installing the AWS CLI there is paramount to a successful deployment in this project because the venv allows the Python dependencies for the application (gunicorn, flask, sql alchemy) to be isolated and ran independently from the system-wide python installation on my Jenkins server, minimizing potential conflicts. It also ensures the application is highy portable, as all the dependencies are included in the source code. This is integral to our automated CI/CD pipeline as it allows Elastic Beanstalk to build and rebuild the application when needed, with all the necessary components packaged in one place. 
 
 ### Configure AWS CLI
 - **Why**: Proper configuration is needed to authenticate and interact with AWS services. This is where the Access and Secret Access Keys I wrote about earlier comes in!
