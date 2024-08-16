@@ -7,6 +7,7 @@ The goal of this project was to deploy _**Kura QuikBuks Automated**_, a Retail B
 
 **Create AWS Access Keys**
 - **Why**: AWS Access Keys are necessary for programmatic access to AWS services. These keys allow Jenkins to interact with AWS services such as Elastic Beanstalk.
+  
 - **How:**
     1. Navigate to the AWS service: IAM (search for this in the AWS console)
     2. Click on "Users" on the left side navigation panel
@@ -19,34 +20,42 @@ The Access and Secret Access keys are needed for future steps, so safe storage o
 
 ### Set Up Security Groups
 - **Why**: Security Groups ensure that the necessary ports are open for communication between EC2 instances and other services.
+  
 - **How**: I created a Security Group that allowed inbound traffic on Ports 22 (SSH), 8080 (Jenkins), and 8000 (Gunicorn), with all outbound traffic permitted.
 
 ### Launch EC2 Instances
 - **Why**: EC2 instances are required to run Jenkins and host the application, providing the necessary computational resources.
+  
 - **How**: I deployed two EC2 instances: one for Jenkins and one for the Elastic Beanstalk environment.
 
 ### Install Jenkins
-- **Why**: Jenkins automates the build and deployment pipeline. It pulls code from GitHub, tests it, and handles deployment once the Jenkinsfile is configured to do so. 
+- **Why**: Jenkins automates the build and deployment pipeline. It pulls code from GitHub, tests it, and handles deployment once the Jenkinsfile is configured to do so.
+  
 - **How**: I ran a script that installed Python 3.7, the deadsnakes repository, and Jenkins. I then logged into Jenkins and added the necessary plugins to integrate with GitHub and other tools. I then hooked my GitHub into Jenkins so that it could pull the source code from my repository. 
 
 ### Create `system_resources_test.sh` Script
 - **Why**: The system resources script monitors the system resources on the Jenkins server, ensuring it operates within acceptable limits and preventing resource exhaustion.
+  
 - **How**: The `system_resources_test.sh` script checks CPU utilization, system memory and disk usage, ensuring their levels do not pass 80%, 90%, and 90%, respectively, and I included exit codes to indicate if those thresholds were exceeded. Error codes are crucial in automating responses to resource issues, helping to prevent failed builds or deployment processes.
 
 ### Configure Jenkins Pipeline
 - **Why**: The Jenkins pipeline builds the application, tests it's logic to ensure no errors, in the automated version of the retail app, deploys the application automatically upon code changes.
+  
 - **How**: I modified the Jenkinsfile that defines the stages for building, testing, and deploying the application, adding a block to allow it to automatically deploy _**Kura QuikBuks Automated**_.
 
 ### Install AWS CLI on EC2 Instance
-- **Why**: AWS CLI allows for command-line interaction with AWS services, enabling automated deployment.
+- **Why**: The AWS CLI allows for command-line interaction with AWS services, enabling automated deployment.
+  
 - **How**: I first changed to the jenkins user, then navigated to the Kura QuikBuks Automated workspace, acitvated the virtual environment that Jenkins created during the inital build phase, and then Installed AWS CLI by downloading the installer, extracting it from the zip file, and running the setup script. Activating the virtual environment and installing the AWS CLI there is paramount to a successful deployment in this project because the venv allows the Python dependencies for the application (gunicorn, flask, sql alchemy) to be isolated and ran independently from the system-wide python installation on the Jenkins server, minimizing potential conflicts. It also ensures the application is highy portable, as all the dependencies are included in the source code. This is integral to our automated CI/CD pipeline as it allows Elastic Beanstalk to build and rebuild the application when needed, with all the necessary components packaged in one place. 
 
 ### Configure AWS CLI
 - **Why**: Proper configuration is needed to authenticate and interact with AWS services. This is where the Access and Secret Access Keys I wrote about earlier comes in!
+  
 - **How**: I used the `aws configure` command (while still masquerading as the Jenkins user) to set up credentials and default settings for AWS CLI.
 
 ### Deploy Using AWS CLI
 - **Why**: Automating the deployment process ensures consistency and reduces manual errors. This allowed me to avoid a critical error that caused sleepless nights when deploying the previous iteration of Kura QuikBuks
+  
 - **How**: One AWS CLI command is eb init, which allowed me to deploy Kura QuikBuks Automated via the commandline, configure the environment parameters, and then automate the development via my Jenkinsfile. 
 
 ## SYSTEM DESIGN DIAGRAM
@@ -56,23 +65,28 @@ The Access and Secret Access keys are needed for future steps, so safe storage o
 ## ISSUES/TROUBLESHOOTING
 
 ### Invalid Parameter Value Error in Elastic Beanstalk
-- **Problem**: I encountered an error with the environment name containing invalid characters. My initial environment name kQBA included underscores, which is not accepted for Elastic Beanstalk names. 
+- **Problem**: I encountered an error with the environment name containing invalid characters. My initial environment name kQBA included underscores, which is not accepted for Elastic Beanstalk names.
+  
 - **Solution**: I updated the environment name, swapping out the underscores with dashes. For Elastic Beanstalk, the environment name can only contain words, digits, and dashes, and cannot start or end with a dash. This will be important to keep in mind if you attempt to deploy your own flask application via these steps!
 
 ### Jenkinsfile Syntax Errors
-**Problem:** The syntax I used when adding a 'Deploy' stage into my Jenkinsfile was incorrect, causing errors at the 'Deploy' stage when initiating a build in Jenkins.
-**Solution:** I reviewed and corrected the syntax errors in the Jenkinsfile. This was my first time working with Groovy syntax, so my curly brackets were off when writing my scripting pipeline. After fixing the curly bracket placements and indents, I ensured I had my stages in the correct order (Checkout --> Build --> Test --> Deploy), and all was well.
+- **Problem:** The syntax I used when adding a 'Deploy' stage into my Jenkinsfile was incorrect, causing errors at the 'Deploy' stage when initiating a build in Jenkins.
+
+- **Solution:** I reviewed and corrected the syntax errors in the Jenkinsfile. This was my first time working with Groovy syntax, so my curly brackets were off when writing my scripting pipeline. After fixing the curly bracket placements and indents, I ensured I had my stages in the correct order (Checkout --> Build --> Test --> Deploy), and all was well.
 
 ### Error Running Commands as Different Users
 - **Problem**: I ran into issues with running commands under different user accounts (e.g., jenkins vs. ubuntu). I was not able to install AWS CLI as the ubuntu user in the venv created by Jenkins during the build phase of my deployment. Activating the venv and installing AWS CLI there is a necessary step of the automated deployment pipeline.
+  
 - **Solution**: I used `sudo su -` to switch to the appropriate user (Jenkins in this case) for running commands and configuring AWS CLI.  
 
 ### AWS CLI Authentication Issues
 - **Problem**: I received an "AuthFailure" error when trying to use AWS CLI commands as the Jenkins user. I needed to be the Jenkins user so I could install and configue Elastic Beanstalk in the workspace environment created by Jenkins, otherwise I would be unable to automate deployment.
+  
 - **Solution**: First, I ensured that AWS CLI was properly configured with valid credentials. Ensuring the credentials I inputted were correct, eliminating accuracy from the potential issues, I realized the credentials themselves were not valid for the third party application Jenkins. I then created a new Access keypair for Jenkins, ensuring the use case was Thrid Party Applications. This allowed me to run AWS CLI commands as the Jenkins user.
 
 ### Jenkins Testing Phase Failures Due to Memory Threshold
 - **Problem**: the jenkins build process failed intermittently due to surpassing memory thresholds on the Jenkins server.
+- 
 - **Solution**:
   - I killed the process `fwupd`, which is responsible for updating server firmware, as it was consuming the second most memory (13%) on the Jenkins server, after Jenkins itself.
   - I increased the memory threshold to 90% to prevent future build failures due to resource limits.
@@ -85,22 +99,31 @@ The Access and Secret Access keys are needed for future steps, so safe storage o
 
 - **Business Benefits**:
   - **Enhanced Agility**: With automated deployments, the ability to adapt to market changes and regulatory requirements is improved, enabling quicker responses to emerging trends and customer needs.
+    
   - **Increased Reliability**: Automation ensures consistency in deployment processes, minimizing the risk of configuration drift and deployment failures, which is crucial for maintaining high availability and performance in financial applications.
+    
   - **Compliance and Security**: Automated pipelines can be configured to include security checks and compliance validations, ensuring that deployments adhere to industry standards and regulations, which is essential for the banking sector.
 
 ### Potential Issues with Automation
 
 - **Misconfigurations in Deployment Scripts**: Automated deployment scripts can sometimes be misconfigured, leading to failed deployments or application downtime. Ensuring that scripts are thoroughly tested and reviewed before use can mitigate this risk.
+  
 - **Credential Management**: Managing AWS credentials and access keys is critical to avoid security breaches. Proper handling and rotation of these credentials are necessary to maintain security and prevent unauthorized access.
+  
 - **Dependency Management**: Automating deployments requires managing dependencies effectively. Inconsistent or outdated dependencies can lead to application failures. Using version control and dependency management tools helps keep dependencies up-to-date and consistent.
 
 ### Mitigation Strategies
 
 - **Regularly Update and Test Deployment Scripts**: Continuously review and test deployment scripts to ensure they are accurate and functioning as expected. Implement automated tests for deployment scripts to catch issues early.
+  
 - **Use Version Control for Deployment Configurations**: Maintain version control for deployment configurations and scripts to track changes and ensure that the correct versions are used during deployments.
+  
 - **Implement Monitoring and Alerting**: Set up monitoring and alerting systems (such as my system resources script with exit codes) to quickly detect and respond to issues during and after deployments. This helps to identify problems before they impact end-users and enables rapid remediation.
+  
 - **Secure Credential Management**: Implement robust practices for managing AWS credentials, such as using IAM roles with appropriate permissions, rotating access keys regularly, and employing encryption for sensitive information.
+  
 - **Automate Compliance Checks**: Incorporate automated compliance and security checks into the CI/CD pipeline to ensure that each deployment meets regulatory requirements and security standards, reducing the risk of non-compliance and vulnerabilities.
+  
 - **Scalable Deployment Strategies**: Design the deployment pipeline to handle scaling efficiently, considering the high volume of transactions and user interactions typical in banking applications. Use AWS features like Elastic Load Balancing and Auto Scaling to manage traffic and ensure high availability.
 
 ## CONCLUSION
