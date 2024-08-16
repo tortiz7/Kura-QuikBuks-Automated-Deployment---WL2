@@ -18,7 +18,7 @@ The goal of this project was to deploy _**Kura QuikBuks Automated**_, a Retail B
 
 ### Set Up Security Groups
 - **Why**: Security Groups ensure that the necessary ports are open for communication between EC2 instances and other services.
-- **How**: Created a Security Group that allowed inbound traffic on Ports 22 (SSH), 8080 (Jenkins), and 8000 (Gunicorn), with all outbound traffic permitted.
+- **How**: I created a Security Group that allowed inbound traffic on Ports 22 (SSH), 8080 (Jenkins), and 8000 (Gunicorn), with all outbound traffic permitted.
 
 ### Launch EC2 Instances
 - **Why**: EC2 instances are required to run Jenkins and host the application, providing the necessary computational resources.
